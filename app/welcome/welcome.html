@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+<title>Mobile Tracking Application</title>
+
+<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="blog.css" rel="stylesheet">
+</head>
+
+<body ng-app ="myApp" ng-controller="WelcomeCtrl">
+  <!-- Nav Bar -->
+  <div class="blog-masthead">
+    <div class="container">
+      <nav class="blog-nav">
+        <a class="blog-nav-item active" href="#/welcome">Home</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+   <p class="lead">Welcome home <b>{{username}}</b> !!</p>
+
+   <div style="width: 100%;">
+
+     <div style="float:left; width: 50%">
+
+      <h2 style="color:blue;">Search</h2>     
+
+      <label> Users </label>
+      <form>
+        <select id="selectUser" ng-model="selectedUser" >
+          <!-- Dummy text 
+          <option val ="ID" disabled="disabled">Choose a user</option> -->
+          <!-- Disable any blank users who slip through the cracks -->
+        <option selected disabled hidden style='display: none' value=''></option>
+        </select>
+      </form>
+      <hr>
+
+      <label> Start Date </label>
+      <div >
+        <input type="date" ng-model="StartDate" value={{StartDate}} >
+        <p>{{StartDate}}</p>
+
+        <input type="time" ng-model="StartTime" value={{StartTime}}> 
+            <p>{{StartTime}}</p>
+      </div>
+      <hr>
+
+      <label> End Date </label>
+      <div >
+        <input type="date" ng-model="EndDate" value={{EndDate}} >
+        <p>{{EndDate}}</p>
+        <input type="time" ng-model="EndTime" value={{EndTime}} >    
+      </div>
+
+      <hr>
+
+      <button  type="button" style="background-color:lightblue;width:30%; height:20%" ng-click="Retrieve()">Search</button>
+
+    </div>
+
+
+    <div style="float:right;" >
+      <h2 style="color:blue;" >Map</h2>
+      
+   
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' bounds = 'map.bounds'control="mapControl">  
+          <ui-gmap-marker ng-repeat="m in markers" control="m.control" coords="m" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+        </ui-gmap-google-map>
+        
+
+        <hr>
+        <label>Results</label>
+        <p>Top speed(Km/h): {{speedtracker}} </p>
+        <p>Distance Travelled(Km): {{Total}}</p>
+
+    </div>
+
+  </div>
+</div>
+<hr>
+    <!--
+     Need to implement an administrative login "admin:true;"  
+     I need to display a google maphere with different locations on it. -->
+     <footer class="footer">
+      <div class="container">
+        <p class="text-muted"> Mobile Tracking Application</p>
+
+      </div>
+    </footer>
+
+  </body>
+</html>
